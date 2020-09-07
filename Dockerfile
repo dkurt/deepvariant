@@ -59,10 +59,10 @@ ADD https://storage.googleapis.com/deepvariant/models/DeepVariant/${VERSION}/Dee
 RUN chmod +r /opt/models/pacbio/model.ckpt*
 
 # Convert model to OpenVINO format
-RUN python3 -m pip install networkx defusedxml test-generator==0.1.1
-RUN sed -i -E 's/from deepvariant import tf_utils//' /opt/deepvariant/deepvariant/modeling.py
-ENV PYTHONPATH=/opt/deepvariant:${PYTHONPATH}
 RUN if [ "${DV_OPENVINO_BUILD}" = "1" ]; then \
+      python3 -m pip install networkx defusedxml test-generator==0.1.1; \
+      sed -i -E 's/from deepvariant import tf_utils//' /opt/deepvariant/deepvariant/modeling.py; \
+      export PYTHONPATH=/opt/deepvariant:${PYTHONPATH}; \
       for model in wgs wes pacbio; do \
         cd /opt/models/${model}; \
         python3 /opt/deepvariant/scripts/freeze_graph.py --checkpoint model.ckpt --output model.pb; \
