@@ -158,7 +158,7 @@ flags.DEFINE_string(
 
 flags.DEFINE_boolean('use_tpu', False, 'Use tpu if available.')
 
-flags.DEFINE_boolean('use_openvino', False, 'Use Intel OpenVINO as backend')
+flags.DEFINE_boolean('use_openvino', True, 'Use Intel OpenVINO as backend')
 
 flags.DEFINE_string(
     'kmp_blocktime', '0',
