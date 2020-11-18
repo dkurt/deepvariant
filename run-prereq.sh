@@ -227,11 +227,12 @@ fi
 ################################################################################
 if [[ "${DV_OPENVINO_BUILD}" = "1" ]]; then
   sudo -H apt-get -y install apt-transport-https
-  curl -o GPG-PUB-KEY-INTEL-OPENVINO-2020 https://apt.repos.intel.com/openvino/2020/GPG-PUB-KEY-INTEL-OPENVINO-2020
-  sudo apt-key add GPG-PUB-KEY-INTEL-OPENVINO-2020
-  sudo echo "deb https://apt.repos.intel.com/openvino/2020 all main" | sudo tee - a /etc/apt/sources.list.d/intel-openvino-2020.list
+  curl -o GPG-PUB-KEY-INTEL-OPENVINO-2021 https://apt.repos.intel.com/openvino/2021/GPG-PUB-KEY-INTEL-OPENVINO-2021
+  sudo apt-key add GPG-PUB-KEY-INTEL-OPENVINO-2021
+  sudo echo "deb https://apt.repos.intel.com/openvino/2021 all main" | sudo tee - a /etc/apt/sources.list.d/intel-openvino-2021.list
   sudo -H apt-get update
-  sudo apt-get install -y --no-install-recommends intel-openvino-dev-ubuntu16-2020.4.287
+  sudo apt-get install -y --no-install-recommends intel-openvino-dev-ubuntu18-2021.1.110
+  sudo ln -s /opt/intel/openvino_2021 /opt/intel/openvino
 fi
 
 ################################################################################
