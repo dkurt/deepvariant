@@ -37,7 +37,6 @@ with tf.compat.v1.Session() as sess:
 
     graph_def = sess.graph.as_graph_def()
     graph_def = tf.compat.v1.graph_util.convert_variables_to_constants(sess, graph_def, [out_node])
-    graph_def = optimize_for_inference_lib.optimize_for_inference(graph_def, [in_node], [out_node], tf.float32.as_datatype_enum)
 
     with tf.io.gfile.GFile(args.output, 'wb') as f:
         f.write(graph_def.SerializeToString())
